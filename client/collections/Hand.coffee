@@ -3,9 +3,24 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
+    # todo also
 
   hit: ->
     @add(@deck.pop()).last()
+    @check();
+
+  check: ->
+    if @scores()[0] > 21 or !@scores()[1]? and @scores()[1] > 21
+      alert 'bust!'
+      #@trigger('newRound')
+      #use @deck and just pop off more cards
+
+  #newRound: ->
+    #@remove(@models)
+
+
+  stand: ->
+    console.log('standing!');
 
   scores: ->
     # The scores are an array of potential scores.
